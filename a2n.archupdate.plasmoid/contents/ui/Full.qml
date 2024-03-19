@@ -124,7 +124,7 @@ PlasmaExtras.Representation {
                 height: Kirigami.Units.iconSizes.medium
                 icon.name: "install-symbolic"
                 display: PlasmaComponents.AbstractButton.IconOnly
-                text: i18n("Install all update")
+                text: i18n("Install all updates")
                 onClicked: updateAll()
                 visible: !onRefresh && packageList !== ""
                 PlasmaComponents.ToolTip {
