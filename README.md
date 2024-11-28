@@ -35,14 +35,13 @@ You can install the widget from :
 
 - place the `a2n.archupdate.plasmoid` folder from the latest release in `~/.local/share/plasma/plasmoids/`
 - download via [the KDE store](https://www.pling.com/p/2134470/) (install in `~/.local/share/plasma/plasmoids/`)
-- [Dl the package via the AUR](https://aur.archlinux.org/packages/kdeplasma-arch-update-notifier-git) (install in `/usr/share/plasma/plasmoids/`)
+- [Dl the package via the AUR](https://aur.archlinux.org/packages/plasma6-applets-arch-update-notifier) (install in `/usr/share/plasma/plasmoids/`)
 
 #### plasma 5
 
 If you want to use this plugin with kde plasma 5 you should use:
  - ["The new era release" (v4.2)](https://github.com/bouteillerAlan/archupdate/releases/tag/v4.2.1)
  - [this version on the pling store](https://www.pling.com/p/1940819/)
- - [this version via the AUR](https://aur.archlinux.org/packages/kdeplasma5-arch-update-notifier-git).
 
 **Please note that this version is not maintained since the v4.2.**
 
@@ -53,6 +52,10 @@ You need to have the following packages installed on your system **OR** to edit 
  - [`yay`](https://github.com/Jguer/yay) is used for the list and count of the AUR repository.
  - [`konsole`](https://archlinux.org/packages/extra/x86_64/konsole/) is used to launch the cmd for the upgrade.
  - [`kdialog`](https://archlinux.org/packages/extra/x86_64/kdialog/) is used too, but it's not mandatory because it's used just for alerting if a cmd throw an error.
+
+### How to help with the AUR package?
+
+Go here: [https://github.com/bouteillerAlan/plasma6-applets-arch-update-notifier](https://github.com/bouteillerAlan/plasma6-applets-arch-update-notifier).
 
 ## How to have this in my system tray?
 
