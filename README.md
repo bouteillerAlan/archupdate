@@ -1,5 +1,7 @@
 # Arch update counter - plasma widget
 
+<img alt="Static Badge" src="https://img.shields.io/badge/Still_maintened-Yes_%3A)-green">
+
 ![screenshot of the aplet with all the alt](git-assets/img/allalt.png)
 
 1 - custom icon color  |  2 - custom dot color  |  3 - default dot  |  4 - label with separator  |  5 - label without separator | 6 - in the system tray | 7 - package list
