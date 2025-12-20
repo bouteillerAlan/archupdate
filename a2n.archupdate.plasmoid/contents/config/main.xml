@@ -86,6 +86,15 @@ http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
 </group>
 
 <group name="displayConfigPage">
+
+  <entry name="icon" type="string">
+    <default>software-update-available.svg</default>
+  </entry>
+
+  <entry name="secondaryIcon" type="string">
+    <default>software-update-available.svg</default>
+  </entry>
+
     <entry name="separateResult" type="Bool">
         <default>false</default>
     </entry>

@@ -8,6 +8,9 @@ Kirigami.ScrollablePage {
 
     id: displayConfigPage
 
+    property alias cfg_icon: configMainIconField.value
+    property alias cfg_secondaryIcon: configSecondaryIconField.value
+
     property alias cfg_separateResult: separateResult.checked
     property alias cfg_separator: separator.text
 
@@ -39,6 +42,28 @@ Kirigami.ScrollablePage {
                 Kirigami.FormData.isSection: true
                 Kirigami.FormData.label: "Icon"
             }
+        }
+
+        Kirigami.FormLayout {
+          anchors.left: parent.left
+          anchors.right: parent.right
+
+          ConfigIcon {
+            id: configMainIconField
+            Kirigami.FormData.label: "Main icon: "
+            defaultValue: "software-update-available.svg"
+          }
+        }
+
+        Kirigami.FormLayout {
+          anchors.left: parent.left
+          anchors.right: parent.right
+
+          ConfigIcon {
+            id: configSecondaryIconField
+            Kirigami.FormData.label: "Refresh icon: "
+            defaultValue: "arch-unknown.svg"
+          }
         }
 
         Kirigami.FormLayout {
