@@ -40,7 +40,7 @@ Item {
   property bool invertMouseAction: plasmoid.configuration.invertMouseAction
   property bool mainIsRefresh: plasmoid.configuration.mainIsRefresh
 
-  // not use
+  // TODO not use
   function generateMainIconPath() {
     if (!iconUpdate) return "software-update-available.svg";
     if (iconUpdate.split("/").lenght > 1) return iconUpdate;

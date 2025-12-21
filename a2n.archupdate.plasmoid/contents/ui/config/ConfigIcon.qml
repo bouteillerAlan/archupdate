@@ -27,7 +27,7 @@ Button {
       path = location ? "widgets/panel-background" : "widgets/background";
 
     }
-    console.log("a2narchupdate", defaultValue, value, path);
+    console.log("A2NARCHUPATE", defaultValue, value, path);
     return path;
   }
 
