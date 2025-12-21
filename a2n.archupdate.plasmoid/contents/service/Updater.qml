@@ -16,6 +16,7 @@ Item {
   property string termCmd: Plasmoid.configuration.termCmd
   property string termNoCloseCmd: Plasmoid.configuration.termNoCloseCmd
   property bool notCloseCommand: Plasmoid.configuration.notCloseCommand
+  property string termNoCloseSuffix: Plasmoid.configuration.termNoCloseSuffix
 
   function countArch() {
     if (countArchCommand !== '') cmd.exec(countArchCommand)
@@ -46,7 +47,7 @@ Item {
   function launchUpdate() {
     if (updateCommand !== '') {
       if (notCloseCommand) {
-        cmd.exec(termNoCloseCmd + " '" + updateCommand + "'")
+        cmd.exec(termNoCloseCmd + " '" + updateCommand + " " + termNoCloseSuffix + "'")
       } else {
         cmd.exec(termCmd + " '" + updateCommand + "'")
       }
@@ -56,7 +57,7 @@ Item {
   function launchOneUpdate(packageName) {
     if (updateCommandOne !== '' && packageName) {
       if (notCloseCommand) {
-        cmd.exec(termNoCloseCmd + " '" + updateCommandOne + " " + packageName + "'")
+        cmd.exec(termNoCloseCmd + " '" + updateCommandOne + " " + packageName + " " + termNoCloseSuffix + "'")
       } else {
         cmd.exec(termCmd + " '" + updateCommandOne + " " + packageName + "'")
       }
