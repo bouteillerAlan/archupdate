@@ -1,3 +1,8 @@
+### v6.4.0
+ - Icon can be customized now
+ - Command that run with "do not close" can now run a suffix command, by default it run the default user shell (`$SHELL`)
+ - Improve settings label
+
 ### v6.3.0
   - Add a new parameter for splitting the dot between two CMD
   - The dots are customizable in color and position
