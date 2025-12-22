@@ -14,7 +14,7 @@ Plasma5Support.DataSource {
   property var queue: []
 
   function launchCmdInQueue() {
-    console.log("///////////////////////////////////////////////////////////", queue)
+    console.log("A2NARCHUPDATE: queue", queue)
     isRunning = true
     connectSource(queue[0])
   }
@@ -24,7 +24,7 @@ Plasma5Support.DataSource {
     if (queue.length > 0) {
       launchCmdInQueue(); // If a cmd is still in queue launch it
     } else {
-      console.log("*************************************************** I'm empty boss");
+      console.log("A2NARCHUPDATE: queue is empty");
     }
   }
 

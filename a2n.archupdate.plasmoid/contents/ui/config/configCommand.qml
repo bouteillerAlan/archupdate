@@ -23,14 +23,16 @@ Kirigami.ScrollablePage {
 
   property alias cfg_termCmd: termCmdInput.text
   property alias cfg_termNoCloseCmd: termNoCloseCmdInput.text
+  property alias cfg_termNoCloseSuffix: termNoCloseSuffixInput.text
 
   function generateCmdExample() {
     const cmdA = "<font color=\"" + Kirigami.Theme.disabledTextColor + "\">" + cfg_termCmd + "</font> '<font color=\"" + Kirigami.Theme.positiveTextColor + "\">" + cfg_updateCommand + "</font>'<br/>"
     const cmdB = "<font color=\"" + Kirigami.Theme.disabledTextColor + "\">" + cfg_termCmd + "</font> '<font color=\"" + Kirigami.Theme.positiveTextColor + "\">" + cfg_updateCommandOne + "</font> packageName'<br/>"
     const cmdC = "<font color=\"" + Kirigami.Theme.disabledTextColor + "\">" + cfg_termNoCloseCmd + "</font> '<font color=\"" + Kirigami.Theme.positiveTextColor + "\">" + cfg_updateCommand + "</font>'<br/>"
-    const cmdD = "<font color=\"" + Kirigami.Theme.disabledTextColor + "\">" + cfg_termNoCloseCmd + "</font> '<font color=\"" + Kirigami.Theme.positiveTextColor + "\">" + cfg_updateCommandOne + "</font> packageName'<br/>"
+    const cmdD = "<font color=\"" + Kirigami.Theme.disabledTextColor + "\">" + cfg_termNoCloseCmd + "</font> '<font color=\"" + Kirigami.Theme.positiveTextColor + "\">" + cfg_updateCommandOne + "</font> packageName"
+    const cmdE = "<font color=\"" + Kirigami.Theme.disabledTextColor + "\">" + cfg_termNoCloseSuffix + "</font>'<br/>"
 
-    return "Give the following cmd: <br/>" + cmdA + cmdB + cmdC + cmdD
+    return "Give the following command: <br/>" + cmdA + cmdB + cmdC + cmdD + cmdE
   }
 
   ColumnLayout {
@@ -99,7 +101,7 @@ Kirigami.ScrollablePage {
 
     Kirigami.InlineMessage {
       Layout.fillWidth: true
-      text: "Replace yay by paru or with the AUR helper of your choice.\n checkupdates is recommanded for the db sync."
+      text: "Replace yay by paru or with the AUR helper of your choice.\n checkupdates is recommanded for the db sync.\nFor paru you may want to ignore ignored package with paru -Qua | grep -v ' \[ignored\]$' | wc -l for example"
       visible: true
     }
 
@@ -147,22 +149,27 @@ Kirigami.ScrollablePage {
 
         Controls.TextField {
           id: updateCommandInput
-          Kirigami.FormData.label: "Update command: "
+          Kirigami.FormData.label: "Update all packages command: "
         }
 
         Controls.TextField {
           id: updateCommandOneInput
-          Kirigami.FormData.label: "Update one command: "
+          Kirigami.FormData.label: "Update one package command: "
         }
 
         Controls.TextField {
           id: termCmdInput
-          Kirigami.FormData.label: "Terminal cmd for update action: "
+          Kirigami.FormData.label: "Command for the update action: "
         }
 
         Controls.TextField {
           id: termNoCloseCmdInput
-          Kirigami.FormData.label: "Terminal cmd for update action with do no close: "
+          Kirigami.FormData.label: "Command for the update action with do no close: "
+        }
+
+        Controls.TextField {
+          id: termNoCloseSuffixInput
+          Kirigami.FormData.label: "Command that run after the \"do not close\" command: "
         }
       }
 

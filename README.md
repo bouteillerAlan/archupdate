@@ -55,6 +55,13 @@ You need to have the following packages installed on your system **OR** to edit 
  - [`konsole`](https://archlinux.org/packages/extra/x86_64/konsole/) is used to launch the cmd for the upgrade.
  - [`kdialog`](https://archlinux.org/packages/extra/x86_64/kdialog/) is used too, but it's not mandatory because it's used just for alerting if a cmd throw an error.
 
+If you want to use `paru` you should filter the result to remove any ignored package:
+
+```sh
+paru -Qua | grep -v '\[ignored\]' | wc -l
+paru -Qua | grep -v '\[ignored\]' 
+```
+
 ### How to help with the AUR package?
 
 Go here: [https://github.com/bouteillerAlan/plasma6-applets-arch-update-notifier](https://github.com/bouteillerAlan/plasma6-applets-arch-update-notifier).

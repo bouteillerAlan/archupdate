@@ -10,8 +10,9 @@ import "components" as Components
 Item {
   id: row
 
-  property string iconUpdate: "software-update-available.svg"
-  property string iconRefresh: "arch-unknown.svg"
+  property string iconUpdate: plasmoid.configuration.icon
+  property string iconRefresh: plasmoid.configuration.secondaryIcon
+
   property string totalArch: "0"
   property string totalAur: "0"
 
@@ -39,13 +40,22 @@ Item {
   property bool invertMouseAction: plasmoid.configuration.invertMouseAction
   property bool mainIsRefresh: plasmoid.configuration.mainIsRefresh
 
+  // TODO not use
+  function generateMainIconPath() {
+    if (!iconUpdate) return "software-update-available.svg";
+    if (iconUpdate.split("/").lenght > 1) return iconUpdate;
+    // https://invent.kde.org/plasma/plasma-desktop/-/tree/master/applets/kickoff
+    const location = plasmoid.location === PlasmaCore.Types.Vertical || plasmoid.location === PlasmaCore.Types.Horizontal;
+    return location ? "widgets/panel-background" + iconUpdate : "widgets/background" + iconUpdate;
+  }
+
   // updates the icon according to the refresh status
   function updateUi(refresh: bool) {
     onRefresh = refresh
     if (refresh) {
-      updateIcon.source=iconRefresh
+      updateIcon.source = iconRefresh
     } else {
-      updateIcon.source=iconUpdate
+      updateIcon.source = iconUpdate
     }
   }
 
