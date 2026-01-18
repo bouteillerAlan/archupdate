@@ -26,13 +26,12 @@ Kirigami.ScrollablePage {
   property alias cfg_termNoCloseSuffix: termNoCloseSuffixInput.text
 
   function generateCmdExample() {
+    const shell = "<font color=\"" + Kirigami.Theme.disabledTextColor + "\">" + cfg_termNoCloseSuffix + "</font>'<br/>"
     const cmdA = "<font color=\"" + Kirigami.Theme.disabledTextColor + "\">" + cfg_termCmd + "</font> '<font color=\"" + Kirigami.Theme.positiveTextColor + "\">" + cfg_updateCommand + "</font>'<br/>"
     const cmdB = "<font color=\"" + Kirigami.Theme.disabledTextColor + "\">" + cfg_termCmd + "</font> '<font color=\"" + Kirigami.Theme.positiveTextColor + "\">" + cfg_updateCommandOne + "</font> packageName'<br/>"
-    const cmdC = "<font color=\"" + Kirigami.Theme.disabledTextColor + "\">" + cfg_termNoCloseCmd + "</font> '<font color=\"" + Kirigami.Theme.positiveTextColor + "\">" + cfg_updateCommand + "</font>'<br/>"
-    const cmdD = "<font color=\"" + Kirigami.Theme.disabledTextColor + "\">" + cfg_termNoCloseCmd + "</font> '<font color=\"" + Kirigami.Theme.positiveTextColor + "\">" + cfg_updateCommandOne + "</font> packageName"
-    const cmdE = "<font color=\"" + Kirigami.Theme.disabledTextColor + "\">" + cfg_termNoCloseSuffix + "</font>'<br/>"
-
-    return "Give the following command: <br/>" + cmdA + cmdB + cmdC + cmdD + cmdE
+    const cmdC = "<font color=\"" + Kirigami.Theme.disabledTextColor + "\">" + cfg_termNoCloseCmd + "</font> '<font color=\"" + Kirigami.Theme.positiveTextColor + "\">" + cfg_updateCommand + "</font>" + shell
+    const cmdD = "<font color=\"" + Kirigami.Theme.disabledTextColor + "\">" + cfg_termNoCloseCmd + "</font> '<font color=\"" + Kirigami.Theme.positiveTextColor + "\">" + cfg_updateCommandOne + "</font> packageName" + shell
+    return "Give the following command: <br/>" + cmdA + cmdB + cmdC + cmdD
   }
 
   ColumnLayout {

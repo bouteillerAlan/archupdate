@@ -80,11 +80,11 @@
   </entry>
 
   <entry name="termNoCloseCmd" type="String">
-    <default>konsole --noclose -e</default>
+    <default>konsole --noclose -e bash -c </default>
   </entry>
 
   <entry name="termNoCloseSuffix" type="String">
-    <default>; $SHELL</default>
+    <default>; exec $SHELL</default>
   </entry>
 
 </group>
