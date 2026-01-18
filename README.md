@@ -78,32 +78,48 @@ Go to the 'System Tray Settings' menu and activate it :)
 
 ![screenshot of the settings of the plugin](git-assets/img/set1.png)
 
-| Name                                 | Description                                                                                                         | Result                                                                                              |
-|--------------------------------------|---------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| Command & Debug                      |                                                                                                                     |                                                                                                     |
-| Interval configuration               | set the interval between each execution of the update check function                                                | the `updater` is launch each X minutes                                                              |
-| Debug                                | Enable the debug mode if set to true                                                                                | Show each command launch by the plasmoid with `ARCHUPDATE` at the beggining (for regex search)      |
-| Retry                                | Enable the retry mode if set to true                                                                                | Retry the Count or the List cmd if `stderr` is not empty                                            |
-| Do not close the terminal at the end | if true add the `--noclose` flag into the `konsole` command                                                         | Prevent the console to close at the end of the update command                                       |
-| Count ARCH command                   | The command you want to execute for counting the packages for CORE and EXTRA (default: `checkupdates [pipe] wc -l`) | The `updater` exec this command                                                                     |
-| Count AUR command                    | The command you want to execute for counting the packages for the other db (default: `yay -Qua [pipe] wc -l`)       | The `updater` exec this command                                                                     |
-| Update all command                   | The command for updating all the package at once                                                                    | Pass the command to the Terminal cmd (or the cmd with no close)                                     |
-| Update one command                   | The command for updating one package via the popup                                                                  | Pass the command to the Terminal cmd (or the cmd with no close) and add the package name at the end |
-| Terminal cmd                         | The command for launching the update all or one cmd                                                                 | Launch the update cmd and automatically close at the end of it                                      |
-| Terminal cmd & no close              | The command for launching the update all or one cmd, executed only when "Do not close at the end" is checked        | Launch the update cmd and rest open at the end of it                                                |
-| Display                              |                                                                                                                     |                                                                                                     |
-| Show a dot in place of the label     | Replace the label with a colored dot                                                                                | If the total count is > than 0 the dot is visible, otherwise nothing is shown (no label, no dot)    |
-| Custom dot color                     | If you want to customize the color of the dot                                                                       | If not checked the dot get the color from your theme via `PlasmaCore.Theme.textColor`               |
-| Custom dot position                  | If you want to customize the position of the dot                                                                    | By default to Top Right                                                                             |
-| Separate dot                         | If you want to have the total for *arch* and the total for the other db via two dot                                 | Set two dot one for `totalArch` and one for `totalAur`                                              |
-| Separate result                      | If you want to have the total for *arch* and the total for the other db in the label                                | Set the label text to `' ' + totalArch + separator + totalAur + ' '`                                |
-| Separator                            | The text you want to have for, space available                                                                      | Inject the text you put into the label                                                              |
-| Popup                                |                                                                                                                     |                                                                                                     |
-| Custom X color                       | You can tick the box if you want a custom color on the X element                                                    | Change the color on the popup element and on the preview in the same page                           |
-| Separator text                       | Custom text for the version separator                                                                               | Use the text provided to separate versions in the text                                              |
-| Mouse action                         |                                                                                                                     |                                                                                                     |
-| Click configuration                  | Choose the type of action you want to do for each click on the mouse                                                | Left click to check, middle click to update OR Middle click to check, left click to update          |
-| Main action behavior                 | If you want to refresh the list or open the popup when you click                                                    | Main click depend on the choice made in the Click configuration settings                            |
+### Command & debug
+
+| Name      | Description      |
+| ------------- | ------------- |
+| Update every | the delay between each count |
+| Do not close the terminal... | If set to true the terminal launch when any update action is trigger is keept open when the update is done |
+| Debug | If set to true some debug log appear on journalctl |
+| Retry "Search & Count" cmd | If the count commands end with an error (stderr) we retry to launch the cmd, keep in mind that this feature is not really battle tested and there are no failsafe for a possible infinite loop of retry |
+| count arch command | the cmd we use to count the update from the main repository (use in the icon label) |
+| count aur command | the cmd we use to count the update from the AUR, and other, repository (use in the icon label) |
+| list arch command | the cmd we use to list the package from the main repository (use in the popup) |
+| list aur command | the cmd we use to list the package from the AUR, and other, repository (use in the popup) |
+| update all command | the cmd we use to update all the packages from any repository (use when you clik on install all updates) |
+| update one command | the cmd we use to update one specific package (use when you click on the icon next to a package) |
+| command for the update action | what terminal should launch the update command |
+| command for the update action with do not close | same has precedent but allow you to keep the terminal open after the update command, you need to set "do not close the terminal" to true to use it |
+| command to run after the do not close command | an optional command to run after the update command that is only use in addition to the do not close command, the default one is use to exec the default shell of the user to allow him to actually use the terminal after the end of the update command |
+
+### Display
+
+| Name      | Description      |
+| ------------- | ------------- |
+| Main icon | What icon is used for the main icon |
+| Refresh icon | What icon is used when the applet is in "refreshing" mode |
+| Custom icon color | If you want to change the colors icon |
+| Show a dot | Set to true to get a dot in place of the label |
+| Custom main dot options | If you want to change the color and position of the main dot |
+| Separate the dot | Set to true if you want a dot for the mai repository and a second one for the others repository |
+| Custom second dot options | Same has Custom main dot options but for the second dot |
+| Separate result | Use to separate the result in the label from the main repository and the others one and to set a string separator between both in the label (could be an empty string) |
+
+### Popup
+
+All the option is used to customized the popup list, you got a live example on the top of the page.
+
+### Mouse action
+
+| Name      | Description      |
+| ------------- | ------------- |
+| Mouse action | What mouse button you want to use for each action |
+| Main action behavior | What you want to do when clicking on the applet in the taskbar |
+
 
 ### Regarding the customization of the commands
 
