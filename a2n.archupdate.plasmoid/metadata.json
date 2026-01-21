@@ -12,7 +12,7 @@
         "Id": "a2n.archupdate.plasmoid",
         "License": "GPL-3.0+",
         "Name": "Arch Update Counter",
-        "Version": "6.3.2",
+        "Version": "6.4.2",
         "Website": "https://github.com/bouteillerAlan/archupdate",
         "Depends": ["konsole", "pacman-contrib", "yay"],
         "EnabledByDefault": false
