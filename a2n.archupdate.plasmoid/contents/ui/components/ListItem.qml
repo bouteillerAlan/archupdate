@@ -8,16 +8,23 @@ import org.kde.plasma.components as PlasmaComponents
 PlasmaComponents.ItemDelegate {
     id: listItem
 
-    // index  = index of the element in the model
-    // repo   = name of the repo
-    // name   = package name
-    // fv     = from version
-    // tv     = to version
+    // index      = index of the element in the model
+    // repo       = name of the repo
+    // websiteUrl = URL to the package repository page
+    // name       = package name
+    // fv         = from version
+    // tv         = to version
 
     width: parent.width // throw a warning but work anyway
 
     function updateOne() {
         updater.launchOneUpdate(name)
+    }
+
+    function openRepoPage() {
+        if (websiteUrl) {
+            Qt.openUrlExternally(websiteUrl)
+        }
     }
 
     // generate & style the name of the package
@@ -53,8 +60,19 @@ PlasmaComponents.ItemDelegate {
                 text: generateVersion()
             }
         }
-        ColumnLayout {
+        RowLayout {
             Layout.alignment: Qt.AlignRight
+            PlasmaComponents.ToolButton {
+                id: repoToolButton
+                icon.name: "internet-services-symbolic"
+                display: PlasmaComponents.AbstractButton.IconOnly
+                text: i18n("See repository")
+                onClicked: openRepoPage()
+                visible: websiteUrl !== ''
+                PlasmaComponents.ToolTip {
+                    text: parent.text
+                }
+            }
             PlasmaComponents.ToolButton {
                 id: actionToolButton
                 icon.name: "system-run-symbolic"

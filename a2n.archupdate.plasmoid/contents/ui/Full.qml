@@ -50,17 +50,28 @@ PlasmaExtras.Representation {
             const tv = packageDetails[3]
 
             let repoName = null
+            let websiteUrl = null
             if (listArchRepo !== '') {
               const urls = listArchRepo.split('\n')
               const matchingUrl = urls.find(url => url.includes(name))
               if (matchingUrl) {
-                const archReg = new RegExp(`/archlinux/(core|extra|community|multilib)/`)
+                const archReg = new RegExp(`/archlinux/(core|core-testing|extra|extra-testing|gnome-unstable|kde-unstable|multilib|multilib-testing)/`, 'i')
                 const eosReg = new RegExp(`/endeavouros/repo/(endeavouros)/`)
                 const archMatch = archReg.exec(matchingUrl)
                 const eosMatch = eosReg.exec(matchingUrl)
                 const match = archMatch || eosMatch
-                repoName = match ? (archMatch ? archMatch[1] : eosMatch[1]) : 'unknown'
+                repoName = match ? (archMatch ? archMatch[1].toLowerCase() : eosMatch[1]) : 'unknown'
+
+                if (archMatch && archMatch[1]) {
+                  websiteUrl = `https://archlinux.org/packages/${repoName}/x86_64/${name}/`
+                } else if (eosMatch && eosMatch[1]) {
+                  websiteUrl = `https://github.com/endeavouros-team/PKGBUILDS/tree/master/${name}`
+                }
               }
+            }
+
+            if (!isArch) {
+              websiteUrl = `https://aur.archlinux.org/packages/${name}`
             }
 
             if (name.trim() !== "") {
@@ -68,7 +79,8 @@ PlasmaExtras.Representation {
                     name: name,
                     fv: fv,
                     tv: tv,
-                    repo: repoName ?? 'aur'
+                    repo: repoName ?? 'aur',
+                    websiteUrl: websiteUrl ?? ''
                 });
             }
 
