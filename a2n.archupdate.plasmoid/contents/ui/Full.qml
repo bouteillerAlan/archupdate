@@ -36,18 +36,33 @@ PlasmaExtras.Representation {
         if (!onRefresh) updater.countAll()
     }
 
-    function injectList(list: string, isArch: bool) {
+    function injectList(list: string, isArch: bool, listArchRepo: string) {
         list.split("\n").forEach(line => {
             const packageDetails = line.split(/\s+/);
             const name = packageDetails[0];
             const fv = packageDetails[1];
             const tv = packageDetails[3];
+
+            let repoName = null;
+            if (listArchRepo !== '') {
+              const urls = listArchRepo.split('\n')
+              const matchingUrl = urls.find(url => url.includes(name))
+              if (matchingUrl) {
+                const archReg = new RegExp(`/archlinux/(core|extra|community|multilib)/`)
+                const eosReg = new RegExp(`/endeavouros/repo/(endeavouros)/`)
+                const archMatch = archReg.exec(matchingUrl)
+                const eosMatch = eosReg.exec(matchingUrl)
+                const match = archMatch || eosMatch
+                repoName = match ? (archMatch ? archMatch[1] : eosMatch[1]) : 'unknown'
+              }
+            }
+
             if (name.trim() !== "") {
                 packageListModel.append({
                     name: name,
                     fv: fv,
                     tv: tv,
-                    isArch: isArch
+                    repo: repoName ?? 'aur'
                 });
             }
 
@@ -84,11 +99,15 @@ PlasmaExtras.Representation {
             }
         }
 
-        function onPackagesList(listAur, listArch) {
+        /*
+         * listAur & listArch = zoxide 0.9.8-2 -> 0.9.9-1
+         * listArchRepo = https://mirror.theo546.fr/archlinux/extra/os/x86_64/zoxide-0.9.9-1-x86_64.pkg.tar.zst
+         **/
+        function onPackagesList(listAur, listArch, listArchRepo) {
             packageListModel.clear()
             full.packageList = listArch + listAur
-            injectList(listArch, true)
-            injectList(listAur, false)
+            injectList(listArch, true, listArchRepo)
+            injectList(listAur, false, '')
         }
     }
 

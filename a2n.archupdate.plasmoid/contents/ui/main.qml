@@ -19,6 +19,7 @@ PlasmoidItem {
     property string tAur: "0"
     property string listAur: ""
     property string listArch: ""
+    property string listArchRepo: ""
 
     // load one instance of each needed service
     Sv.Updater{ id: updater }
@@ -69,10 +70,12 @@ PlasmoidItem {
             // handle the result for the list
             const cmdIsListAur = cmd === plasmoid.configuration.listAurCommand
             const cmdIsListArch = cmd === plasmoid.configuration.listArchCommand
+            const cmdIsListArchRepo = cmd === plasmoid.configuration.listRepoArchCommand
             if (cmdIsListAur) listAur = stdout
             if (cmdIsListArch) listArch = stdout
-            if (cmdIsListAur || cmdIsListArch) {
-                packagesList(listAur, listArch)
+            if (cmdIsListArchRepo) listArchRepo = stdout
+            if (cmdIsListAur || cmdIsListArch || cmdIsListArchRepo) {
+                packagesList(listAur, listArch, listArchRepo)
             }
 
             // handle the result for the checker
@@ -104,7 +107,7 @@ PlasmoidItem {
         }
 
         signal isUpdating(bool status)
-        signal packagesList(string listAur, string listArch)
+        signal packagesList(string listAur, string listArch, string listArchRepo)
         signal totalAur(string total)
         signal totalArch(string total)
         signal connected(string source)

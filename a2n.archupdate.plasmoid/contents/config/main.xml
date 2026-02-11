@@ -71,6 +71,10 @@
     <default>checkupdates</default>
   </entry>
 
+  <entry name="listRepoArchCommand" type="String">
+    <default>yay -Su --print</default>
+  </entry>
+
   <entry name="listAurCommand" type="String">
     <default>yay -Qua</default>
   </entry>

@@ -11,6 +11,7 @@ Item {
   property string countAurCommand: Plasmoid.configuration.countAurCommand
   property string listArchCommand: Plasmoid.configuration.listArchCommand
   property string listAurCommand: Plasmoid.configuration.listAurCommand
+  property string listRepoArchCommand: Plasmoid.configuration.listRepoArchCommand
   property string updateCommand: Plasmoid.configuration.updateCommand
   property string updateCommandOne: Plasmoid.configuration.updateCommandOne
   property string termCmd: Plasmoid.configuration.termCmd
@@ -34,9 +35,14 @@ Item {
     if (listAurCommand !== '') cmd.exec(listAurCommand)
   }
 
+  function listArchRepo() {
+    if (listRepoArchCommand !== '') cmd.exec(listRepoArchCommand)
+  }
+
   function countAll() {
     countArch()
     countAur()
+    listArchRepo()
   }
 
   function listAll() {

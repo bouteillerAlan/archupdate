@@ -19,6 +19,7 @@ Kirigami.ScrollablePage {
   property alias cfg_countAurCommand: countAurCommandInput.text
 
   property alias cfg_listArchCommand: listArchCommandInput.text
+  property alias cfg_listRepoArchCommand: listRepoArchCommandInput.text
   property alias cfg_listAurCommand: listAurCommandInput.text
 
   property alias cfg_termCmd: termCmdInput.text
@@ -100,7 +101,7 @@ Kirigami.ScrollablePage {
 
     Kirigami.InlineMessage {
       Layout.fillWidth: true
-      text: "Replace yay by paru or with the AUR helper of your choice.\n checkupdates is recommanded for the db sync.\nFor paru you may want to ignore ignored package with paru -Qua | grep -v ' \[ignored\]$' | wc -l for example"
+      text: "Replace yay by paru or with the AUR helper of your choice.\n checkupdates is recommanded for the db sync.\nFor paru you may want to exclude ignored package with paru -Qua | grep -v ' \[ignored\]$' | wc -l for example"
       visible: true
     }
 
@@ -109,22 +110,27 @@ Kirigami.ScrollablePage {
 
       Controls.TextField {
         id: countArchCommandInput
-        Kirigami.FormData.label: "Count ARCH command: "
+        Kirigami.FormData.label: "Count ARCH command (expected output = 12): "
       }
  
       Controls.TextField {
         id: countAurCommandInput
-        Kirigami.FormData.label: "Count AUR command: "
+        Kirigami.FormData.label: "Count AUR command (expected output = 12): "
       }
 
       Controls.TextField {
         id: listArchCommandInput
-        Kirigami.FormData.label: "List ARCH command: "
+        Kirigami.FormData.label: "List ARCH command (expected output = package oldver -> newver): "
+      }
+
+      Controls.TextField {
+        id: listRepoArchCommandInput
+        Kirigami.FormData.label: "List ARCH repository command (expected output = list of repo url): "
       }
 
       Controls.TextField {
         id: listAurCommandInput
-        Kirigami.FormData.label: "List AUR command: "
+        Kirigami.FormData.label: "List AUR command (expected output = package oldver -> newver): "
       }
     }
 

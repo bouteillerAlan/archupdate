@@ -9,7 +9,7 @@ PlasmaComponents.ItemDelegate {
     id: listItem
 
     // index  = index of the element in the model
-    // isArch = true if the cmd is the listArch command
+    // repo   = name of the repo
     // name   = package name
     // fv     = from version
     // tv     = to version
@@ -24,7 +24,7 @@ PlasmaComponents.ItemDelegate {
     function generateName() {
         const nc = plasmoid.configuration.nameUseCustomColor ? plasmoid.configuration.nameColor : Kirigami.Theme.textColor
         const sc = plasmoid.configuration.sourceUseCustomColor ? plasmoid.configuration.sourceColor : Kirigami.Theme.disabledTextColor
-        return '<font color="' + nc + '"> ' + name + ' </font><font color="' + sc + '"> from ' + (isArch ? 'arch' : 'aur') + '</font>'
+        return '<font color="' + nc + '"> ' + name + ' </font><font color="' + sc + '"> from ' + (repo) + '</font>'
     }
 
     // generate & style the version of the package
