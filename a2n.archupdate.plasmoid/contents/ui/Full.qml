@@ -37,13 +37,19 @@ PlasmaExtras.Representation {
     }
 
     function injectList(list: string, isArch: bool, listArchRepo: string) {
-        list.split("\n").forEach(line => {
-            const packageDetails = line.split(/\s+/);
-            const name = packageDetails[0];
-            const fv = packageDetails[1];
-            const tv = packageDetails[3];
+        const lines = list.split("\n")
+        lines.sort((a, b) => {
+          const aDetails = a.split(/\s+/)
+          const bDetails = b.split(/\s+/)
+          return aDetails[0].localeCompare(bDetails[0])
+        })
+        lines.forEach(line => {
+            const packageDetails = line.split(/\s+/)
+            const name = packageDetails[0]
+            const fv = packageDetails[1]
+            const tv = packageDetails[3]
 
-            let repoName = null;
+            let repoName = null
             if (listArchRepo !== '') {
               const urls = listArchRepo.split('\n')
               const matchingUrl = urls.find(url => url.includes(name))
@@ -106,8 +112,8 @@ PlasmaExtras.Representation {
         function onPackagesList(listAur, listArch, listArchRepo) {
             packageListModel.clear()
             full.packageList = listArch + listAur
-            injectList(listArch, true, listArchRepo)
             injectList(listAur, false, '')
+            injectList(listArch, true, listArchRepo)
         }
     }
 
