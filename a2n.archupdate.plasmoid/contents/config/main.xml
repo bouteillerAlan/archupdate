@@ -80,7 +80,7 @@
   </entry>
 
   <entry name="termNoCloseCmd" type="String">
-    <default>konsole --noclose -e bash -c </default>
+    <default>konsole -e bash -c </default>
   </entry>
 
   <entry name="termNoCloseSuffix" type="String">
