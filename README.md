@@ -76,8 +76,6 @@ Go to the 'System Tray Settings' menu and activate it :)
 
 ## Configuration
 
-![screenshot of the settings of the plugin](git-assets/img/set1.png)
-
 ### Command & debug
 
 | Name      | Description      |
@@ -89,12 +87,22 @@ Go to the 'System Tray Settings' menu and activate it :)
 | count arch command | the cmd we use to count the update from the main repository (use in the icon label) |
 | count aur command | the cmd we use to count the update from the AUR, and other, repository (use in the icon label) |
 | list arch command | the cmd we use to list the package from the main repository (use in the popup) |
+| list arch repo | List all the repository url to generate a button in the UI |
 | list aur command | the cmd we use to list the package from the AUR, and other, repository (use in the popup) |
 | update all command | the cmd we use to update all the packages from any repository (use when you clik on install all updates) |
 | update one command | the cmd we use to update one specific package (use when you click on the icon next to a package) |
 | command for the update action | what terminal should launch the update command |
 | command for the update action with do not close | same has precedent but allow you to keep the terminal open after the update command, you need to set "do not close the terminal" to true to use it |
 | command to run after the do not close command | an optional command to run after the update command that is only use in addition to the do not close command, the default one is use to exec the default shell of the user to allow him to actually use the terminal after the end of the update command |
+
+**Note on the command that run after the "do not close":**
+
+This command is mandatory to keep the console open with `konsole -e bash -c`, without `; exec $SHELL` we have to tell konsole to stay open with its own flag `konsole --noclose -e bash -c`.
+
+I try many command but this is hard to got only one command for this "do not close" feature, this is why I have added this new option: 
+- `konsole --noclose -e bash -c 'echo "test"; exec $SHELL'`, launch the user shell after but doesn't close if `exit` for example
+- `konsole --noclose -e bash -c 'echo "test"` keep the console open but the user can't interact with it
+- `konsole -e bash -c 'echo "test"; exec $SHELL'` has all we want but `; exec $SHELL` is mandatory
 
 ### Display
 
