@@ -125,7 +125,7 @@ Kirigami.ScrollablePage {
 
       Controls.TextField {
         id: listRepoArchCommandInput
-        Kirigami.FormData.label: "List ARCH repository command (expected output = list of repo url): "
+        Kirigami.FormData.label: "List repository detail (expected output = same has yay -Siq): "
       }
 
       Controls.TextField {

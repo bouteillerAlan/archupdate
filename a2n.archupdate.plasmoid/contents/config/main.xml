@@ -72,7 +72,7 @@
   </entry>
 
   <entry name="listRepoArchCommand" type="String">
-    <default>yay -Su --print</default>
+    <default>yay -Siq</default>
   </entry>
 
   <entry name="listAurCommand" type="String">

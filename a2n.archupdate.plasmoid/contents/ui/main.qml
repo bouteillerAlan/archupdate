@@ -74,7 +74,7 @@ PlasmoidItem {
             if (cmdIsListAur) listAur = stdout
             if (cmdIsListArch) listArch = stdout
             if (cmdIsListArchRepo) listArchRepo = stdout
-            if (cmdIsListAur || cmdIsListArch || cmdIsListArchRepo) {
+            if (cmdIsListAur || cmdIsListArch) {
                 packagesList(listAur, listArch, listArchRepo)
             }
 
