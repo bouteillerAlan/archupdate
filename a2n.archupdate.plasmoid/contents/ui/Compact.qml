@@ -19,6 +19,8 @@ Item {
   property bool separateResult: plasmoid.configuration.separateResult
   property string separator: plasmoid.configuration.separator
 
+  property bool hideOnZero: plasmoid.configuration.hideOnZero
+
   property bool mainDot: plasmoid.configuration.mainDot
   property bool mainDotUseCustomColor: plasmoid.configuration.mainDotUseCustomColor
   property string mainDotColor: plasmoid.configuration.mainDotColor
@@ -240,7 +242,7 @@ Item {
         right: container.right
       }
       text: generateResult()
-      visible: !isPanelVertical && !mainDot
+      visible: !isPanelVertical && !mainDot && !(hideOnZero && !isUpdateNeeded() && !onRefresh)
       icon: updateIcon
     }
 
@@ -250,7 +252,7 @@ Item {
         right: container.right
       }
       text: generateResult()
-      visible: isPanelVertical && !mainDot
+      visible: isPanelVertical && !mainDot && !(hideOnZero && !isUpdateNeeded() && !onRefresh)
       icon: updateIcon
     }
 

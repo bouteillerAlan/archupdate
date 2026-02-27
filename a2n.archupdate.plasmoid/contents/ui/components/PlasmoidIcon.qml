@@ -1,4 +1,5 @@
 import QtQuick
+import QtCore
 import org.kde.kirigami as Kirigami
 import org.kde.ksvg as KSvg
 import org.kde.plasma.workspace.components as WorkspaceComponents
@@ -22,8 +23,20 @@ Item {
         property int sourceIndex: 0
         anchors.centerIn: parent
         smooth: true
-        isMask: true
+        isMask: {
+            let src = root.source || "";
+            return !src.startsWith("/") && !src.startsWith("~/") && !src.includes("://");
+        }
         color: iconUseCustomColor ? iconColor : Kirigami.Theme.colorSet
-        source: Qt.resolvedUrl("../../assets/" + root.source)
+        source: {
+            let src = root.source || "software-update-available.svg";
+            if (src.includes("://")) return src;
+            if (src.startsWith("/")) return "file://" + src;
+            if (src.startsWith("~/")) {
+                let home = StandardPaths.standardLocations(StandardPaths.HomeLocation)[0];
+                return "file://" + home + src.slice(1);
+            }
+            return Qt.resolvedUrl("../../assets/" + src);
+        }
     }
 }

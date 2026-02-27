@@ -27,6 +27,8 @@ Kirigami.ScrollablePage {
   property alias cfg_iconColor: iconColor.color
   property alias cfg_iconUseCustomColor: iconUseCustomColor.checked
 
+  property alias cfg_hideOnZero: hideOnZero.checked
+
   ColumnLayout {
 
     anchors {
@@ -193,6 +195,12 @@ Kirigami.ScrollablePage {
         id: separator
         Kirigami.FormData.label: "Separator: "
         visible: separateResult.checked
+      }
+
+      Controls.CheckBox {
+        id: hideOnZero
+        Kirigami.FormData.label: "Hide label when 0 updates: "
+        checked: false
       }
     }
 

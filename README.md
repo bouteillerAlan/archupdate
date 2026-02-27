@@ -116,6 +116,7 @@ I try many command but this is hard to got only one command for this "do not clo
 | Separate the dot | Set to true if you want a dot for the mai repository and a second one for the others repository |
 | Custom second dot options | Same has Custom main dot options but for the second dot |
 | Separate result | Use to separate the result in the label from the main repository and the others one and to set a string separator between both in the label (could be an empty string) |
+| Hide label when 0 | Simply hide the label if total update is 0 in place of showing 0 |
 
 ### Popup
 

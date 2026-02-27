@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import QtCore
 import org.kde.plasma.core as PlasmaCore
 import org.kde.kquickcontrolsaddons as KQuickAddons
 import org.kde.ksvg as KSvg
@@ -54,7 +55,17 @@ Button {
       anchors.centerIn: parent
       width: Kirigami.Units.iconSizes.large
       height: width
-      source: configIcon.value
+      source: {
+        let path = configIcon.value;
+        if (!path || path === configIcon.defaultValue) return Qt.resolvedUrl("../../assets/" + configIcon.defaultValue);
+        if (path.includes("://")) return path;
+        if (path.startsWith("/")) return "file://" + path;
+        if (path.startsWith("~/")) {
+          let home = StandardPaths.standardLocations(StandardPaths.HomeLocation)[0];
+          return "file://" + home + path.slice(1);
+        }
+        return path;
+      }
     }
   }
 
